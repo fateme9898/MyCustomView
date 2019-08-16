@@ -19,15 +19,14 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
-public class DrawBallView extends View {
+public class DrawBallView extends View  implements View.OnClickListener{
     Paint circlePaint, linePaint , paint1 , roadPaint;
     public int radius = 320;
     int carX, carY;
-    float currrentTouchPosition;
-    float lastTouchPosition;
+Bitmap bit;
     float carDegree = 0;
     boolean up;
-  
+
 
     public DrawBallView(Context context) {
         super(context);
@@ -42,6 +41,7 @@ public class DrawBallView extends View {
 
 
     public void init() {
+
 
 
         ValueAnimator animator = ValueAnimator.ofFloat(360,0);
@@ -60,8 +60,8 @@ public class DrawBallView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int centerX = Resources.getSystem().getDisplayMetrics().widthPixels / 2;
-        int centerY = Resources.getSystem().getDisplayMetrics().heightPixels / 2;
+        int centerX = canvas.getWidth()/ 2;
+        int centerY = canvas.getHeight()/ 2;
         super.onDraw(canvas);
 
         circlePaint=new Paint();
@@ -115,9 +115,18 @@ public class DrawBallView extends View {
         Bitmap car = Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
 
 
+
         carX = (int) (Math.cos(Math.toRadians(carDegree)) * radius + centerX - car.getWidth() / 2);
         carY = (int) (Math.sin(Math.toRadians(carDegree)) * radius + centerY - car.getHeight() / 2);
         canvas.drawBitmap(car, carX, carY, null);
+
+
+//        Bitmap source2 = resizeBitmap(R.mipmap.car2, 100, 200);
+//
+//        canvas.drawBitmap(source2, centerX-35, centerY/4, null);
+
+
+
 
         //right palm
 
@@ -238,5 +247,10 @@ public class DrawBallView extends View {
         paint.setColor(color);
         paint.setStyle(style);
         return paint;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

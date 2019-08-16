@@ -15,4 +15,13 @@
         tools:layout_editor_absoluteY="0dp"
         tools:ignore="MissingConstraints" />
 
+    <ImageView
+        android:id="@+id/carr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/car2"
+        android:paddingLeft="180dp"
+
+     />
+
 </android.support.constraint.ConstraintLayout>
